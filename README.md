@@ -26,6 +26,7 @@ The library used to connect to the API : http_client
 https://symfony.com/doc/current/components/http_client.html
 
 #Setup
+```bash
 $ composer install
 $ yarn install
 $ yarn build
