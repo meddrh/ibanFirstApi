@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Details du compte N° {{ wallet['wallet'].id }} {% endblock %}
+
+{% block body %}
+
+<section class="pt-md-5">
+
+
+<h3 class="text-center">Les informations du compte : <span class="text-success">{{ wallet['wallet'].id }}</span></h3>
+
+    {% if wallet is defined %}
+
+    <table class="table mt-lg-5">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Tag</th>
+            <th scope="col">Scurrency</th>
+            <th scope="col">tatus</th>
+            <th scope="col">AccountNumber</th>
+            <th scope="col">CorrespondentBank</th>
+            <th scope="col">HolderBank</th>
+            <th scope="col">Holder</th>
+        </tr>
+        </thead>
+        <tbody>
+             {% for value in wallet %}
+                 <tr style="background-color: #2C3E50">
+                     <td> {{ value.id }}</td>
+                    <td>{{ value.tag }}</td>
+                    <td>{{ value.currency }}</td>
+                    <td>{{ value.status }}</td>
+                    <td>{{ value.accountNumber }}</td>
+                    <td>
+                     BIC :    {{ value.correspondentBank.bic }} <br>
+                     NAME :    {{ value.correspondentBank.name }} <br>
+                      STREET :   {{ value.correspondentBank.address.street }} <br>
+                     POSTCODE :   {{ value.correspondentBank.address.postCode }} <br>
+                     CITY :   {{ value.correspondentBank.address.city }} <br>
+                     PROVINCE :   {{ value.correspondentBank.address.province }} <br>
+                     COUNTRY :   {{ value.correspondentBank.address.country }} <br>
+                     </td>
+                     <td>
+                         BIC :    {{ value.holderBank.bic }} <br>
+                         clearingCodeType :    {{ value.holderBank.clearingCodeType }} <br>
+                         clearingCode :   {{ value.holderBank.clearingCode }} <br>
+                         NAME :    {{ value.holderBank.name }} <br>
+                             STREET :   {{ value.holderBank.address.street }} <br>
+                             POSTCODE :   {{ value.holderBank.address.postCode }} <br>
+                             CITY :   {{ value.holderBank.address.city }} <br>
+                             PROVINCE :   {{ value.holderBank.address.province }} <br>
+                             COUNTRY :   {{ value.holderBank.address.country }} <br>
+                     </td>
+                     <td>
+                         Name :   {{ value.holder.name }} <br>
+                         Type :   {{ value.holder.type }} <br>
+                         STREET :   {{ value.holder.address.street }} <br>
+                         POSTCODE :   {{ value.holder.address.postCode }} <br>
+                         CITY :   {{ value.holder.address.city }} <br>
+                         PROVINCE :   {{ value.holder.address.province }} <br>
+                         COUNTRY :   {{ value.holder.address.country }} <br>
+                     </td>
+                 </tr>
+            {% endfor %}
+         </tbody>
+    </table>
+        {% else %}
+        <p class="text-danger">Wallet not found</p>
+    {% endif %}
+</section>
+{% endblock %}
